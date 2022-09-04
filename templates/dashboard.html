@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.84.0">
+  <title>Home|-page</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
+  <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+  <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+  <meta name="theme-color" content="#7952b3">
+
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Float four columns side by side */
+    .column {
+      float: left;
+      width: 25%;
+      padding: 0 10px;
+    }
+
+    /* Remove extra left and right margins, due to padding */
+    .row {
+      margin: 0 -5px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Style the counter cards */
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      padding: 16px;
+      text-align: center;
+      background-color: #f1f1f1;
+    }
+
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="cover.css" rel="stylesheet">
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb" style="height: 200px;">
+      <div>
+        <h3 class="float-md-start mb-0">Welcome, {{name}}</h3>
+        <nav class="nav nav-masthead justify-content-center float-md-end">
+          <a class="nav-link active" aria-current="page" href="/dashboard" style="color: white;">Home</a>
+          <a class="nav-link" href="#" style="color: white;">Summary</a>
+          <a class="nav-link" href="/logout" style="color: white;">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+
+
+    <main class="px-3">
+      <h1>ADD YOUR TASK HERE.</h1>
+      <p class="lead">
+        <a href="/list" class="btn btn-lg btn-secondary fw-bold border-black bg-black">+</a>
+      </p>
+    </main>
+
+    <div class="row">
+
+      {% for row in rows %}
+      <div class="column" style="margin-top: 10px">
+        <div class="card">
+          <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+              style="width: 17rem; background-color: white; color: black; font-weight: bold; border-color: black;">
+              {{ row[1] }}
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Edit</a></li>
+              <li><a class="dropdown-item" href="#">Delete</a></li>
+            </ul>
+          </div>
+          {% for column in columns %}
+          {% if column[1].__eq__(row[1]) %}
+          <div class="card" style="width: 18rem; margin-top: 10px;">
+            <div class="card-body">
+              <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                  style="width: 14rem; background-color: white; color: black; font-weight: bold; border-color: black;">
+                  {{ column[2] }}
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Edit</a></li>
+                  <li><a class="dropdown-item" href="#">Delete</a></li>
+                </ul>
+              </div>
+            </div>
+            <hr style="color: black;">
+            <h6 class="card-subtitle mb-2 text-muted" style="color: black;">{{ column[5] }}</h6>
+            <p class="card-text" style="color: black;">{{ column[3] }}</p>
+            <p class="card-text" style="color: black; text-align: right;">{{ column[4] }}</p>
+          </div>
+          {% endif %}
+          {% endfor %}
+          <a href="/card" class="btn btn-outline-primary"
+            style="width:5rem; margin: 15px auto; text-align: center;">ADD</a>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+
+
+
+
+
+</body>
+
+</html>

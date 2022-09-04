@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Home|-page</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Bootstrap core CSS -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Float four columns side by side */
+        .column {
+            float: left;
+            width: 25%;
+            padding: 0 10px;
+        }
+
+        /* Remove extra left and right margins, due to padding */
+        .row {
+            margin: 0 -5px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive columns */
+        @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+                display: block;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Style the counter cards */
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            text-align: center;
+            background-color: #f1f1f1;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb" style="height: 150px;">
+            <div>
+                <h3 class="float-md-start mb-0">Welcome, {{name}}</h3>
+                <nav class="nav nav-masthead justify-content-center float-md-end">
+                    <a class="nav-link active" aria-current="page" href="/dashboard" style="color: white;">Home</a>
+                    <a class="nav-link" href="#" style="color: white;">Summary</a>
+                    <a class="nav-link" href="/logout" style="color: white;">Logout</a>
+                </nav>
+            </div>
+        </header>
+
+
+
+        <main class="px-3">
+            <form action='/addcard' method="POST" class="border border-light p-5 "
+                style="width: 50%; margin-left: 25%; font-family: cursive; ">
+
+                <p class="h4 mb-4 text-center">Add a Card</p>
+
+                <label for="select">List</label>
+                <select class="browser-default custom-select mb-4" id="select" name="list_title">
+                    {% for o in listtitle %}
+                    <option value="{{ o[0] }}">{{ o[0] }}</option>
+                    {% endfor %}
+                </select><br>
+
+                <label for="textInput">Title</label>
+                <input type="text" id="textInput" class="form-control mb-4" placeholder="" name="card_title">
+
+                <label for="textarea">Content</label>
+                <textarea id="textarea" class="form-control mb-4" placeholder="" name="content"></textarea>
+
+                <label for="textInput">deadline</label>
+                <input type="datetime-local" id="textInput" class="form-control mb-4" placeholder="" name="deadline">
+
+                <div class="mb">
+                    <!-- Default switch -->
+                    <div class="form-check form-switch" style="width: 40%; margin-left:38%;">
+                        <input class="form-check-input" id="newField1" type="checkbox"  name="complete" value="Completed" />
+                        <label class="form-check-label" for="newField1" >Mark as Complete</label>
+                    </div>
+                </div>
+
+
+                <button class="btn btn-primary btn-block" type="submit" style="margin-top: 10px;"
+                    value="submit">Save</button>
+            </form>
+        </main>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
