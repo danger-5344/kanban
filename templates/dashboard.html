@@ -126,8 +126,8 @@
               {{ row[1] }}
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Edit</a></li>
-              <li><a class="dropdown-item" href="#">Delete</a></li>
+              <li><a class="dropdown-item" href="/edit/{{ row[1] }}">Edit</a></li>
+              <li><a class="dropdown-item" href="/delete-list/{{ row[1] }}">Delete</a></li>
             </ul>
           </div>
           {% for column in columns %}
@@ -135,13 +135,13 @@
           <div class="card" style="width: 18rem; margin-top: 10px;">
             <div class="card-body">
               <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" name="card_name" value="{{ column[2] }}"
                   style="width: 14rem; background-color: white; color: black; font-weight: bold; border-color: black;">
                   {{ column[2] }}
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Edit</a></li>
-                  <li><a class="dropdown-item" href="#">Delete</a></li>
+                  <li><a class="dropdown-item" href="/edit/{{ column[2] }}">Edit</a></li>
+                  <li><a class="dropdown-item" href="/delete-card/{{ column[2] }}">Delete</a></li>
                 </ul>
               </div>
             </div>

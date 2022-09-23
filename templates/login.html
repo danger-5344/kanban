@@ -40,11 +40,11 @@
         <form action="/login_validation" method="POST" class="p-4 p-md-5 border rounded-3 bg-light">
             <h3  class="display-4 fw lh-1 mb-3 text-center">Login</h3>
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="uemail">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="uemail" required>
             <label for="floatingInput">Email</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="upassword">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="upassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
             <label for="floatingPassword">Password</label>
           </div>
           

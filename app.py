@@ -71,6 +71,7 @@ def addlist():
     if request.method == 'POST':
         try:
             list_title = request.form['list_title']
+            list_title=list_title.strip()
             list_description = request.form['list_description']
             with sql.connect("kanban.db") as con:
                 cur = con.cursor()
@@ -106,6 +107,8 @@ def addcard():
         try:
             list_title = request.form['list_title']
             card_title = request.form['card_title']
+            list_title=list_title.strip()
+            card_title=card_title.strip()
             content = request.form['content']
             deadline = request.form['deadline']
             complete = request.form.get('complete')
@@ -169,16 +172,42 @@ def signup_validation():
             uname = request.form['uname']
             with sql.connect("kanban.db") as con:
                 cur = con.cursor()
-                cur.execute(
-                    "INSERT INTO signup (uname,uemail,upassword) VALUES (?,?,?)", (uname, uemail, upassword))
-
+                cur.execute("INSERT INTO signup (uname,uemail,upassword) VALUES (?,?,?)", (uname, uemail, upassword))
                 con.commit()
                 return redirect('/')
         except:
             con.rollback()
             msg = "Error in Insert Operation"
-    else:
-        return redirect('/signup')
+    
+    return redirect('/signup')
+
+
+@app.route("/delete-list/<string:title>")
+def delete_list(title):
+    if 'user_id' in session:
+        with sql.connect("kanban.db") as con:
+            cur = con.cursor() 
+            cur.execute( "DELETE from card where uemail=? and list_title=?",(session["uniqueid"],title))
+            con.commit()
+        with sql.connect("kanban.db") as con:
+            cur = con.cursor()     
+            cur.execute( "DELETE from list where uemail=? and list_title=?",(session["uniqueid"],title))
+            con.commit()
+            con.close
+
+    return redirect('/dashboard')
+    
+
+
+@app.route("/delete-card/<string:title>")
+def delete_card(title):
+    if 'user_id' in session:
+        with sql.connect("kanban.db") as con:
+            cur = con.cursor() 
+            cur.execute( "DELETE from card where uemail=? and card_title=?",(session["uniqueid"],title))
+            con.commit()
+    return redirect('/dashboard')
+    
 
 
 if __name__ == "__main__":
